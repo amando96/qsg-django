@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Title {% endblock %}
+
+{% block content %} 
+
+	<h1>Politica de Privacidade</h1>
+	<p>
+		<h3>1) Dados</h3>
+		Toda a informação etc etc
+	</p>
+	<p>
+		<h3>2) Utilização</h3>
+		Toda a informação etc etc
+	</p>
+
+ {% endblock %}

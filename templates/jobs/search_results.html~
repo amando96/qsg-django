@@ -1,0 +1,26 @@
+{% if results %}
+	<table class="table search-results table-hover">
+		<thead>
+			<tr>
+				<th>Distrito</th>
+				<th>Empresa</th>
+				<th>Posição</th>
+				<th>Salário Mensal</th>
+				<th>Género</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for result in results %}
+			<tr>
+				<td><a href="{% url 'district_detail' result.salary_district.id %}">{{ result.salary_district }}</a></td>
+				<td><a href="../company/{{ result.salary_company.id }}">{{ result.salary_company }}</a></td>
+				<td><a href="position/{{ result.salary_position.id }}">{{ result.salary_position }}</a></td>
+				<td>€{{ result.salary_value }}</td>
+				<td>{{ result.salary_gender }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>Sem resultados</p>
+{% endif %}

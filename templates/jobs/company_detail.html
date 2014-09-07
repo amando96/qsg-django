@@ -1,0 +1,61 @@
+{% extends "jobs/base.html" %}
+
+{% block title %} Title {% endblock %}
+
+{% block content %} 
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad" >
+   
+   
+ 				<div class="panel panel-info">
+    					<div class="panel-heading">
+      						<h3 class="panel-title">Empresa: {{ company.company_name }}</h3>
+    					</div>
+    					<div class="panel-body">
+      						<div class="row">
+							<div class=" col-md-9 col-lg-9 "> 
+          							<table class="table table-user-information">
+            								<tbody>
+									      <tr>
+										<td>Descrição:</td>
+										<td>{{ company.company_description }}</td>
+									      </tr>
+									      <tr>
+										<td>Adicionada:</td>
+										<td>{{ company.company_date_added }}</td>
+									      </tr>
+									      <tr>
+										<td>Salários submetidos:</td>
+										<td>3</td>
+									      </tr>									   
+									      <tr>
+										<td>Média de salários:</td>
+										<td>€550</td>
+									      </tr>
+									      <tr>
+										<td>Género Dominante</td>
+										<td>Feminino</td>
+									      </tr>
+										
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        
+                        <a data-original-title="Se trabalhar nesta empresa poderá inserir o seu salário através deste botão." data-toggle="tooltip" href="#" class="btn btn-primary">Submeter salário para esta empresa</a>
+			<span class="pull-right">
+                    		<a data-original-title="Viu algum erro com a informação da empresa?" data-toggle="tooltip" href="#" class="btn btn-danger">Notificar erro</a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+ {% endblock %}
