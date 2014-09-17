@@ -6,32 +6,80 @@
 
 	<div class="row">    
                 <div class="col-md-12">
-                            <div class="input-group">
-                        <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span id="search_concept">Pesquisar por</span> <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#district">Distrito</a></li>
-                                <li><a href="#position">Posição</a></li>
-                                <li><a href="#company">Empresa</a></li>
-                               <!-- <li><a href="#greather_than">Salário maior do que</a></li>
-                                <li><a href="#greather_than">Salário menor do que</a></li>-->
-                                <li class="divider"></li>
-                            </ul>
-                        </div>
-                        <input type="hidden" name="search_param" value="all" id="search_param">         
-                        <input type="text" id="search" class="form-control" name="x" placeholder="Termo da pesquisa...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" id="search-ajax" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                    </div>
-                </div>
-            </div>            
-            <div id="ajax-results">
+			<form id="search-form" action="{% url 'search' %}" method="get">
+		            	<div class="input-group search-panel">
+				        <div class="input-group-btn">
+				            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				                <span id="search_concept">Pesquisar por</span> <span class="caret"></span>
+				            </button>
+				            <ul class="dropdown-menu" role="menu">
+				                <li><a href="#district">Distrito</a></li>
+				                <li><a href="#position">Posição</a></li>
+				                <li><a href="#company">Empresa</a></li>
+				               <!-- <li><a href="#greather_than">Salário maior do que</a></li>
+				                <li><a href="#greather_than">Salário menor do que</a></li>-->
+				                <li class="divider"></li>
+				            </ul>
+				        </div>
+		               		<input type="hidden" name="by" value="all" id="search_param">         
+		               		<input type="text" id="search" class="form-control" name="s" placeholder="Termo da pesquisa...">
+		        		<span class="input-group-btn">
+		            			<button class="btn btn-default" id="search-ajax" type="button"><span class="glyphicon glyphicon-search"></span></button>
+		        		</span>
+				</div>
+			</form>
+        	</div>
+	</div>            
+            <!--<div id="ajax-results">
                 
             </div>
-            <div class="spinner"></div>
-        </div>   
+            <div class="spinner"></div>-->
+		{% if results %}
+			<table class="table search-results table-hover">
+				<thead>
+					<tr>
+						<th>Distrito</th>
+						<th>Empresa</th>
+						<th>Posição</th>
+						<th>Salário Mensal</th>
+						<th>Género</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for result in results %}
+					<tr>
+						<td><a href="{% url 'district_detail' result.salary_district.id %}">{{ result.salary_district }}</a></td>
+						<td><a href="{% url 'company_detail' result.salary_company.id %}">{{ result.salary_company }}</a></td>
+						<td><a href="{% url 'position_detail' result.salary_position.id %}">{{ result.salary_position }}</a></td>
+						<td>€{{ result.salary_value }}
+						{% if result.salary_value > all_sal_avg %}
+							<span data-original-title="Salário acima da média" data-toggle="tooltip" class="glyphicon glyphicon-arrow-up green"></span></td>	
+						{% else %}
+							<span data-original-title="Salário abaixo da média" data-toggle="tooltip" class="glyphicon glyphicon-arrow-down red"></span></td>
+						{% endif %}
+						</td>
+						<td>{{ result.salary_gender }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p>Sem resultados</p>
+		{% endif %}
+		<div class="pagination">
+	    <span class="step-links">
+		{% if results.has_previous %}
+		    <a href="?page={{ results.previous_page_number }}">Anterior</a>
+		{% endif %}
 
+		<span class="current">
+		    Página {{ results.number }} de {{ results.paginator.num_pages }}.
+		</span>
+
+		{% if results.has_next %}
+		    <a href="?page={{ results.next_page_number }}">Próximo</a>
+		{% endif %}
+	    </span>
+	</div> 
+        </div>
  {% endblock %}

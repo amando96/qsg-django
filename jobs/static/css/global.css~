@@ -81,6 +81,21 @@ body{
 {margin-top:20px;
 }
 
-.panel-details .panel-heading{
-	background: #333;
+.green{
+	color:green;
 }
+.red{
+	color:red;
+}
+
+.panel-info > .panel-heading{
+	border-bottom:rgb(16,16,16);
+	background:rgb(34,34,34);
+	color:rgb(200,200,200);
+	font-size:90px;
+}
+
+.panel-info{
+	border-color:rgb(16, 16, 16)
+}
+

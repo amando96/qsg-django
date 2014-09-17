@@ -1,6 +1,6 @@
 {% extends "jobs/base.html" %}
 
-{% block title %} Empresa: {{ company.company_name }} :: Quanto se ganha? {% endblock %}
+{% block title %} Posição: {{ position.position_name }} :: Quanto se ganha? {% endblock %}
 
 {% block content %} 
 
@@ -11,44 +11,39 @@
    
  				<div class="panel panel-info">
     					<div class="panel-heading">
-      						<h1 class="panel-title">{{ company.company_name }}</h1>
+      						<h1 class="panel-title">{{ position.position_name }}</h1>
     					</div>
     					<div class="panel-body">
       						<div class="row">
 							<div class="col-md-4 col-lg-4">
-								Descrição:{{ company.company_description }}
+								Descrição:{{ position.position_name }}
 							</div>
 							<div class=" col-md-8 col-lg-8 "> 
           							<table class="table table-user-information">
-            								<tbody>									      
-									      <tr>
-										<td>Adicionada:</td>
-										<td>{{ company.company_date_added|date:"M d, Y" }}</td>
-									      </tr>
-									      <tr>
+            								<tbody>
 										<td>Salários submetidos:</td>
 										<td>{{ sal_cnt }}</td>
 									      </tr>									   
 									      <tr>
 										<td>Média de salários:</td>
 										<td>
-											€{{ company_sal_avg }} 
-											{% if company_sal_avg > all_sal_avg %}
-												<span data-original-title="Salários acima da média comparado a outras empresas" data-toggle="tooltip" class="glyphicon glyphicon-arrow-up green"></span></td>	
+											€{{ position_sal_avg|floatformat:"2" }} 
+											{% if position_sal_avg >= all_sal_avg %}
+												<span data-original-title="Salários acima da média comparado a outras posições" data-toggle="tooltip" class="glyphicon glyphicon-arrow-up green"></span></td>	
 											{% else %}
-												<span data-original-title="Salários abaixo da média comparado a outras empresas" data-toggle="tooltip" class="glyphicon glyphicon-arrow-down red"></span></td>
+												<span data-original-title="Salários abaixo da média comparado a outras posições" data-toggle="tooltip" class="glyphicon glyphicon-arrow-down red"></span></td>
 											{% endif %}
-									      </tr>
-									</tbody>
-          							</table>
-							</div>
+									      </tr>                    
+                    							</tbody>
+          							</table>		
+                					</div>
 							<div class="col-md-12 col-lg-12" id="company_salaries">
 								{% if salaries %}
 								<table class="table search-results table-hover">
 									<thead>
 										<tr>
 											<th>Distrito</th>
-											<th>Posição</th>
+											<th>Empresa</th>										
 											<th>Salário Mensal</th>
 											<th>Género</th>
 										</tr>
@@ -57,7 +52,7 @@
 										{% for result in salaries %}
 										<tr>
 											<td><a href="{% url 'district_detail' result.salary_district.id %}">{{ result.salary_district }}</a></td>
-											<td><a href="{% url 'position_detail' result.salary_position.id %}">{{ result.salary_position }}</a></td>
+											<td><a href="{% url 'company_detail' result.salary_company.id %}">{{ result.salary_company }}</a></td>
 											<td>€{{ result.salary_value }}</td>
 											<td>{{ result.salary_gender }}</td>
 										</tr>
@@ -70,15 +65,17 @@
 							</div>
               					</div>
             				</div>
-                 			<div class="panel-footer">
+                 			<!--<div class="panel-footer">
                         
                         			<a data-original-title="Se trabalhar nesta empresa poderá inserir o seu salário através deste botão." data-toggle="tooltip" href="#" class="btn btn-primary">Submeter salário</a>
 						<span class="pull-right">
                     					<a data-original-title="Viu algum erro com a informação da empresa?" data-toggle="tooltip" href="#" class="btn btn-danger">Notificar erro</a>
-                       				</span>
-                    			</div>
-            			</div>
+                        			</span>
+                    			</div>-->
+            
+          			</div>
         		</div>
       		</div>
     	</div>
+
  {% endblock %}

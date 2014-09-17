@@ -1,10 +1,81 @@
 {% extends "jobs/base.html" %}
 
-{% block title %} Title {% endblock %}
+{% block title %} Distito: {{ district.district_name }} :: Quanto se ganha? {% endblock %}
 
 {% block content %} 
 
-	<h1>{{ district.district_name }}</h1>
-	<p>{{ company.company_description }}</p> 
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad" >
+   
+   
+ 				<div class="panel panel-info">
+    					<div class="panel-heading">
+      						<h1 class="panel-title">{{ district.district_name }}</h1>
+    					</div>
+    					<div class="panel-body">
+      						<div class="row">
+							<div class="col-md-4 col-lg-4">
+								Descrição:{{ district.district_name }}
+							</div>
+							<div class=" col-md-8 col-lg-8 "> 
+          							<table class="table table-user-information">
+            								<tbody>
+										<td>Salários submetidos:</td>
+										<td>{{ sal_cnt }}</td>
+									      </tr>									   
+									      <tr>
+										<td>Média de salários:</td>
+										<td>
+											€{{ district_sal_avg }} 
+											{% if district_sal_avg >= all_sal_avg %}
+												<span data-original-title="Salários acima da média comparado a outros distritos" data-toggle="tooltip" class="glyphicon glyphicon-arrow-up green"></span></td>	
+											{% else %}
+												<span data-original-title="Salários abaixo da média comparado a outros distritos" data-toggle="tooltip" class="glyphicon glyphicon-arrow-down red"></span></td>
+											{% endif %}
+									      </tr>                    
+                    							</tbody>
+          							</table>		
+                					</div>
+							<div class="col-md-12 col-lg-12" id="company_salaries">
+								{% if salaries %}
+								<table class="table search-results table-hover">
+									<thead>
+										<tr>
+											<th>Empresa</th>
+											<th>Posição</th>
+											<th>Salário Mensal</th>
+											<th>Género</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for result in salaries %}
+										<tr>
+											<td><a href="{% url 'company_detail' result.salary_company.id %}">{{ result.salary_company }}</a></td>
+											<td><a href="{% url 'position_detail' result.salary_position.id %}">{{ result.salary_position }}</a></td>
+											<td>€{{ result.salary_value }}</td>
+											<td>{{ result.salary_gender }}</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+								{% else %}
+									<p>Ainda não foram submetidos salários</p>
+								{% endif %}
+							</div>
+              					</div>
+            				</div>
+                 			<!--<div class="panel-footer">
+                        
+                        			<a data-original-title="Se trabalhar nesta empresa poderá inserir o seu salário através deste botão." data-toggle="tooltip" href="#" class="btn btn-primary">Submeter salário</a>
+						<span class="pull-right">
+                    					<a data-original-title="Viu algum erro com a informação da empresa?" data-toggle="tooltip" href="#" class="btn btn-danger">Notificar erro</a>
+                        			</span>
+                    			</div>-->
+            
+          			</div>
+        		</div>
+      		</div>
+    	</div>
 
  {% endblock %}

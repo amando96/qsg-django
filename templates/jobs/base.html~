@@ -38,10 +38,10 @@
       				</div>
       				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-			    			<li class="{% if path == '/' %} active {% endif %}"><a href="{% url 'jobs.views.index' %}">Início</a></li>
-			    			<li class="{% if path == '/search/' %} active {% endif %}"><a href="{% url 'jobs.views.search' %}">Procurar</a></li>
-			    			<li class=""><a href="submit/">Submeter</a></li>
-			    			<li class="{% if path == '/privacy/' %} active {% endif %}"><a href="{% url 'jobs.views.privacy' %}">Privacidade</a></li>
+			    			<li class="{% if path == '/' %} active {% endif %}"><a href="{% url 'index' %}">Início</a></li>
+			    			<li class="{% if path == '/search/' %} active {% endif %}"><a href="{% url 'search' %}">Procurar</a></li>
+			    			<li class="{% if path == '/submit/' %} active {% endif %}"><a href="{% url 'submit' %}"><a href="submit/">Submeter</a></li>
+			    			<li class="{% if path == '/privacy/' %} active {% endif %}"><a href="{% url 'privacy' %}">Privacidade</a></li>
 		       			</ul>
 				</div><!--/.nav-collapse -->
     			</div>

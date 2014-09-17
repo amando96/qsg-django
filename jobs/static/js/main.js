@@ -40,24 +40,16 @@ $(document).ready(function(e){
 		} else {
 		    by = 'all';
 		}
-		$("#ajax-results").load('../recent/',
+		$("#ajax-results").load('../makesearch/',
 		function(){
 		    $("#ajax-results").show();
 		    $(".spinner").hide();
 		});
 	}
 	
-	$('#search-ajax').click(function(){ search(); });
+	$('#search-ajax').click(function(){ $('#search-form').submit(); });
     
-    $("#search").on('keyup', function(){
-        search();
-    });
-    $("#ajax-results").load('../recent/',
-    function(){
-        $("#ajax-results").show();
-        $(".spinner").hide();
-    });
-    
+ 
     $("form").submit(function(e){
         err = false;
         $(".required").each(function(){
@@ -101,7 +93,7 @@ var panels = $('.user-infos');
 
     $('button').click(function(e) {
         e.preventDefault();
-        alert("This is a demo.\n :-)");
+        
     });
 });
 

@@ -15,7 +15,13 @@
 				<td><a href="{% url 'district_detail' result.salary_district.id %}">{{ result.salary_district }}</a></td>
 				<td><a href="{% url 'company_detail' result.salary_company.id %}">{{ result.salary_company }}</a></td>
 				<td><a href="position/{{ result.salary_position.id }}">{{ result.salary_position }}</a></td>
-				<td>€{{ result.salary_value }}</td>
+				<td>€{{ result.salary_value }}
+				{% if result.salary_value > all_sal_avg %}
+					<span class="glyphicon glyphicon-arrow-up green"></span></td>	
+				{% else %}
+					<span class="glyphicon glyphicon-arrow-down red"></span></td>
+				{% endif %}
+				</td>
 				<td>{{ result.salary_gender }}</td>
 			</tr>
 			{% endfor %}
